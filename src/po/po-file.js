@@ -70,9 +70,12 @@ class PoFile {
         contents += this.generateHeaders();
         contents += '\n';
 
-        for (const poObject of this.collection.getTranslations()) {
+        const translations = this.collection.getTranslations();
+        for (const i in translations) {
+            const poObject = translations[i];
             const translationLines = poObject.toString(true);
             contents += translationLines.join('\n');
+            contents += '\n\n';
         }
 
         return contents;
