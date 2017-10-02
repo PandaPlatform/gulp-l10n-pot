@@ -1,0 +1,28 @@
+{
+    "name": "gulp-l10n-pot",
+    "version": "0.1.0",
+    "description": "Parse translations from html files to pot",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/PandaPlatform/gulp-l10n-pot.git"
+    },
+    "keywords": [
+        "l10n",
+        "pot",
+        "translations"
+    ],
+    "author": "Ioannis Papikas <papikas.ioan@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/PandaPlatform/gulp-l10n-pot/issues"
+    },
+    "homepage": "https://github.com/PandaPlatform/gulp-l10n-pot#readme",
+    "devDependencies": {
+        "gulp": "^3.9.1",
+        "gulp-util": "^3.0.8"
+    }
+}
