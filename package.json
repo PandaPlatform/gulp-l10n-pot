@@ -1,6 +1,6 @@
 {
     "name": "gulp-l10n-pot",
-    "version": "0.1.8",
+    "version": "0.1.9",
     "description": "Parse translations from html files to pot",
     "main": "index.js",
     "scripts": {
@@ -21,7 +21,7 @@
         "url": "https://github.com/PandaPlatform/gulp-l10n-pot/issues"
     },
     "homepage": "https://github.com/PandaPlatform/gulp-l10n-pot#readme",
-    "devDependencies": {
+    "dependencies": {
         "globby": "^6.1.0",
         "gulp": "^3.9.1",
         "gulp-util": "^3.0.8",
