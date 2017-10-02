@@ -43,11 +43,15 @@ class HtmlTranslationParser {
             // Get the translation comment
             let translationComment = element.getAttribute('data-translate-comment');
 
+            // Get the translation string
+            let translationString = element.innerHTML;
+
             // Create translation object
             let translationObject = new PoObject({
                 filename: file,
                 comment: translationComment,
-                msgid: translationKey
+                msgid: translationKey,
+                msgstr: translationString
             });
 
             // Append translation object
