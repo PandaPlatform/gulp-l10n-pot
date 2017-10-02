@@ -1,6 +1,6 @@
 {
     "name": "gulp-l10n-pot",
-    "version": "0.1.9",
+    "version": "0.1.10",
     "description": "Parse translations from html files to pot",
     "main": "index.js",
     "scripts": {
