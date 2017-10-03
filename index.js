@@ -69,7 +69,7 @@ module.exports.htmlToPo = function (options) {
     }
 
     const generator = new PoFile(translationParser.getCollection(), options);
-    const potContents = generator.generatePo();
+    const potContents = generator.generatePo(options.language);
 
     // Write file to output
     writeFile(potContents, options.destination);
