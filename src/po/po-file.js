@@ -34,7 +34,7 @@ class PoFile {
     }
 
     /**
-     * Geneate pot contents
+     * Generate pot contents
      *
      * @return {string}
      */
@@ -43,7 +43,7 @@ class PoFile {
         let contents = '';
 
         // Add headers
-        contents += this.generateHeaders();
+        contents += this.generateHeaders('');
         contents += '\n';
 
         const translations = this.collection.getTranslations();
@@ -60,14 +60,15 @@ class PoFile {
     /**
      * Generate pot contents
      *
-     * @return {string}
+     * @param {string} language
+     * @returns {string}
      */
-    generatePo() {
+    generatePo(language) {
         // Initialize contents
         let contents = '';
 
         // Add headers
-        contents += this.generateHeaders();
+        contents += this.generateHeaders(language);
         contents += '\n';
 
         const translations = this.collection.getTranslations();
@@ -82,20 +83,23 @@ class PoFile {
     }
 
     /**
+     * @param {string} language
      * @returns {string}
      */
-    generateHeaders() {
-        const year = new Date().getFullYear();
-
+    generateHeaders(language) {
         let contents = (
-            `# Copyright (C) ${year} ${this.options.package}
-# This file is distributed under the same license as the ${this.options.package} package.
-msgid ""
+            `msgid ""
 msgstr ""
-"Project-Id-Version: ${this.options.package}\\n"
 "MIME-Version: 1.0\\n"
 "Content-Type: text/plain; charset=UTF-8\\n"
-"Content-Transfer-Encoding: 8bit\\n"\n`);
+"Content-Transfer-Encoding: 8bit\\n"
+"X-Generator: gulp-l10n-pot\\n"
+"Project-Id-Version: ${this.options.package}\\n"`);
+
+        if (language) {
+            contents += `\n"Language: ${language}\\n"`;
+        }
+        contents += "\n";
 
         if (this.options.headers && !PoFile.isEmptyObject(this.options.headers)) {
             this.options.headers = this.sortObject(this.options.headers);
