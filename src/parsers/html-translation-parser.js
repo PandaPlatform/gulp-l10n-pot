@@ -37,14 +37,17 @@ class HtmlTranslationParser {
         let dataTranslateElements = fragment.querySelectorAll('[data-translate]');
 
         for (const element of dataTranslateElements) {
-            // Get the translation key
-            let translationKey = element.getAttribute('data-translate');
+            // Get the translation string
+            let translationString = element.innerHTML.trim();
 
             // Get the translation comment
             let translationComment = element.getAttribute('data-translate-comment');
 
-            // Get the translation string
-            let translationString = element.innerHTML;
+            // Get the translation key
+            let translationKey = element.getAttribute('data-translate');
+
+            // Set translation string as key, if key is empty
+            translationKey = translationKey === '' ? translationString : translationKey;
 
             // Create translation object
             let translationObject = new PoObject({
