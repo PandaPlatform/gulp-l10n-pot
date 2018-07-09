@@ -35,13 +35,12 @@ class HtmlTranslationParser {
 
         // Get all tags with a data-translate attribute
         let dataTranslateElements = fragment.querySelectorAll('[data-translate]');
-
         for (const element of dataTranslateElements) {
             // Get the translation string
             let translationString = element.innerHTML.trim();
 
-            // Get the translation comment
-            let translationComment = element.getAttribute('data-translate-comment');
+            // Get the translation comments
+            let translationComment = element.getAttribute('data-translate-comments');
 
             // Get the translation key
             let translationKey = element.getAttribute('data-translate');
@@ -49,13 +48,20 @@ class HtmlTranslationParser {
             // Set translation string as key, if key is empty
             translationKey = translationKey === '' ? translationString : translationKey;
 
-            // Create translation object
-            let translationObject = new PoObject({
-                filename: file,
-                comment: translationComment,
+            // Get translation object (or generate a new one)
+            let translationObject = this.collection.getTranslation(translationKey);
+            translationObject = translationObject ? translationObject : new PoObject({
                 msgid: translationKey,
                 msgstr: translationString
             });
+
+            // Add position
+            translationObject.positions.push(file);
+
+            // Add comment
+            if (translationComment !== null) {
+                translationObject.comments.push(translationComment);
+            }
 
             // Append translation object
             this.collection.addTranslation(translationObject);

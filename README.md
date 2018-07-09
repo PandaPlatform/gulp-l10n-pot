@@ -98,7 +98,13 @@ This package can be used through gulp as follows:
 });
 ```
 
+## Translation Keys
+
+If translation keys are used, all the occurrences of a translation key will be accumulated in one entry.
+The translation value will be the first occurrence of the translation key in any file.
+
+You should be careful to set the same translation for the same keys.
+
 ## Known issues
 
 * It does not extract the line of the file
-* It does not accumulate comments and lines for multiple occurrences

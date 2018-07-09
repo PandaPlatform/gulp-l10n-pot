@@ -27,6 +27,16 @@ class PoCollection {
     }
 
     /**
+     * Get a translation, given a key
+     *
+     * @param {string} translationKey
+     * @return {PoObject}
+     */
+    getTranslation(translationKey) {
+        return this.translations[translationKey];
+    }
+
+    /**
      * Get all translation objects.
      *
      * @returns {PoObject[]}

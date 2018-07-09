@@ -2,14 +2,8 @@
 
 class PoObject {
     constructor(options) {
-        this.filename = options.filename;
-        this.line = options.line;
-
-        // Check if there is line info
-        let line = options.line === undefined ? '' : ':' + options.line;
-        this.info = `${options.filename}${line}`;
-
-        this.comment = options.comment;
+        this.positions = options.positions || [];
+        this.comments = options.comments || [];
         this.msgctxt = options.msgctxt;
         this.msgid = options.msgid;
         this.msgid_plural = options.msgid_plural;
@@ -87,13 +81,18 @@ class PoObject {
         // Write translation rows.
         let output = [];
 
-        if (this.comment) {
-            output.push(`#. ${this.comment}`);
+        // Add comments
+        for (const comment of this.comments) {
+            output.push(`#. ${comment}`);
         }
 
+        // Add positions
         // Unify paths for Unix and Windows
-        output.push(`#: ${this.info.replace(/\\/g, '/')}`);
+        for (const position of this.positions) {
+            output.push(`#: ${position.replace(/\\/g, '/')}`);
+        }
 
+        // Add context
         if (this.msgctxt) {
             output.push(`msgctxt "${PoObject.escapeQuotes(this.msgctxt)}"`);
         }
