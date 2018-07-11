@@ -4,6 +4,15 @@ Generate pot files from your html files using gulp tasks
 
 This package helps generating pot translation files by parsing your html files looking for specific attributes.
 
+## Installation
+
+Using npm:
+
+```
+$ npm i -g npm
+$ npm i --save gulp-l10n-pot
+```
+
 ## Logic
 
 The logic of this package is to allow translations of html files with translation keys using html attributes.
