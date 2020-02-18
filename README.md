@@ -114,6 +114,48 @@ The translation value will be the first occurrence of the translation key in any
 
 You should be careful to set the same translation for the same keys.
 
+## Auto-generate translation keys
+
+You can choose to let the algorithm auto-generate the translation keys for you, in case you need to have keys but
+you are struggling with name conventions.
+
+The auto-generated translation key will include the file path, the tag name, the element id (if any) and the translation
+content (if no element id) to make sure you have unique and self-explanatory ids.
+
+To auto-generate the keys, use the `auto_generate_keys` and `path_prefix` parameters as follows:
+
+```javascript
+(function () {
+    'use strict';
+
+    // Initialize variables
+    var gulp = require('gulp');
+    var pot = require('gulp-l10n-pot');
+
+    // ==================== TRANSLATIONS ==================== //
+    gulp.task('translations-extract', function () {
+        // Generate template file
+        pot.htmlToPot({
+            auto_generate_keys: true,
+            path_prefix: '/resources/views/',
+            package: 'test file',
+            src: '../resources/views/**/*.html',
+            destination: '../resources/translations/po/translations.pot'
+        });
+
+        // Generate default language translations
+        pot.htmlToPo({
+            auto_generate_keys: true,
+            path_prefix: '/resources/views/',
+            package: 'test file',
+            src: '../resources/views/**/*.html',
+            destination: '../resources/translations/po/en-us.po',
+            language: 'en-us'
+        });
+    });
+});
+```
+
 ## Known issues
 
 * It does not extract the line of the file
