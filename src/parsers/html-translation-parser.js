@@ -63,8 +63,8 @@ class HtmlTranslationParser {
                 let elementContent = translationString.replace(/ /g, '-').toLowerCase();
                 let translationKeyName = [elementTagName, elementId ? elementId : elementContent].join('-');
 
-                // Add key suffix, based on the file and name lengths
-                let translationKeySuffix = [fileLength, translationKeyName.length].join('-');
+                // Add key suffix, based on the name length
+                let translationKeySuffix = translationKeyName.length;
 
                 // Set final auto-generated translation key
                 translationKey = [translationKeyPrefix, translationKeyName, translationKeySuffix].join('-').toLowerCase();
